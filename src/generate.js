@@ -49,11 +49,6 @@ const generate = (n = 1) =>
 		...order,
 	}));
 
-// const ordersBeta = [];
-// const jsonData = generate(3);
-// ordersBeta.push(...jsonData);
-// console.log(ordersBeta);
-
 // [
 // 	{"id":1,"user":{"name":"Олег","surname":"Вихта"},"orderType":"Шина","price":2435,"status":"new","createdAt":"2022-03-24T01:27:09.378Z"},
 // 	{"id":2,"user":{"name":"Олег","surname":"Соловье"},"orderType":"Ноутбук","price":4190,"status":"new","createdAt":"2022-03-24T19:08:54.587Z"},
