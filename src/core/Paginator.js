@@ -15,6 +15,24 @@ class Paginator extends EventEmitter {
 		this.update();
 	}
 
+	get pages() {
+		return this._pages;
+	}
+
+	set pages(pages) {
+		this._pages = pages;
+		this.update();
+	}
+
+	get page() {
+		return this._pages;
+	}
+
+	set page(page) {
+		this._page = page;
+		this.update();
+	}
+
 	update() {
 		this._root.textContent = '';
 

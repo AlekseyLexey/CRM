@@ -11,10 +11,13 @@ store.upload();
 console.log(store._orders);
 
 const ot = new OrdersTable(document.querySelector('[data-mount="ordersTable"]'), store.orders.slice(0, 5));
+const pagination = new Paginator(
+	document.querySelector('[data-mount="pagination"]'),
+	Math.ceil(store.orders.length / 5),
+	1
+);
 
-
-ot.on('edit', (id) => console.log(id));
-
-const pagination = new Paginator(document.querySelector('[data-mount="pagination"]'), 5, 1);
-
-pagination.on('move', (number) => console.log(number));
+pagination.on('move', number => {
+	pagination.page = number;
+	ot.orders = store.orders.slice((number - 1) * 5, number * 5);
+});

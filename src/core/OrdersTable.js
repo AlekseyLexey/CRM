@@ -30,6 +30,15 @@ class OrdersTable extends EventEmitter {
 		this.update();
 	}
 
+	get orders() {
+		return this._orders;
+	}
+
+	set orders(orders) {
+		this._orders = orders;
+		this.update();
+	}
+
 	update() {
 		this._root.textContent = '';
 		const ordersTableTemplateClone = ordersTableTemplate.content.cloneNode(true);
