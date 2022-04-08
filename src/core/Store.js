@@ -18,7 +18,6 @@ class Store {
 
 		if (jsonLocal) {
 			this._orders.push(...JSON.parse(jsonLocal));
-			console.log(this._orders);
 		} else {
 			this.reinit();
 		}

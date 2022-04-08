@@ -4,7 +4,6 @@ class Observable {
 	subscribe(subscriber) {
 		const key = Symbol('key');
 		this.subscribers.set(key, subscriber);
-		console.log(this.subscribers);
 
 		return () => {
 			if (this.subscribers.has(key)) {
