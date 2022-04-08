@@ -1,28 +1,12 @@
 import Store from "./core/Store.js";
 import Observable from "./core/Observalbe.js";
 import EventEmitter from "./core/EventEmitter.js";
+import OrdersTable from "./core/OrdersTable.js";
 
 const store = new Store();
 store.download();
 store.upload();
 
-// const ob = new Observable();
+console.log(store._orders);
 
-// ob.subscribe((a) => console.log('Alex', a));
-// ob.subscribe((b) => console.log('Kate', b));
-
-// ob.dispatch();
-
-const ee = new EventEmitter();
-
-ee.addEventListener('click', handlerOne);
-ee.on('focus', (f) => console.log(f));
-
-function handlerOne() {
-	console.log(123);
-}
-
-// ee.removeEventListener('click', handlerOne);
-
-ee.emit('click', 'ClockOn');
-ee.emit('focus', 'da');
+const ot = new OrdersTable(document.querySelector('[data-mount="ordersTable"]'), store.orders.slice(0, 5));
