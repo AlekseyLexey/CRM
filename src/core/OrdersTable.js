@@ -1,3 +1,5 @@
+import EventEmitter from "./EventEmitter.js";
+
 const ordersTableTemplate = document.querySelector('template[data-template="ordersTable"]');
 const orderRowTemplate = document.querySelector('template[data-row="orderRow"]');
 
@@ -15,11 +17,13 @@ const dateFormater = new Intl.DateTimeFormat("ru-Ru", {
 	minute: "numeric",
 });
 
-class OrdersTable {
+class OrdersTable extends EventEmitter {
 	_root = null;
 	_orders = [];
 
 	constructor(root, orders) {
+		super();
+
 		this._root = root;
 		this._orders = orders;
 
@@ -47,10 +51,14 @@ class OrdersTable {
 
 			orderRowTemplateClone.querySelector('[data-field="date"]').textContent = dateFormater.format(new Date(createdAt));
 
+			orderRowTemplateClone.querySelector(`[data-badge="${status}"]`).classList.remove('hidden');
+
+			orderRowTemplateClone.querySelector('[data-field="action"]').addEventListener('click', () => this.emit('edit', id));
+
 			tbody.append(orderRowTemplateClone);
 		}
 
-		this._root.append(tbody);
+		this._root.append(ordersTableTemplateClone);
 	}
 }
 

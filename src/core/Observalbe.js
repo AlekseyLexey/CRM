@@ -23,3 +23,9 @@ class Observable {
 }
 
 export default Observable;
+
+// const ob = new Observable()
+
+// const unsubscribe = ob.subscribe(() => {})
+
+// unsubscribe()
