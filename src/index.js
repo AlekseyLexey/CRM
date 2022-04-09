@@ -2,6 +2,7 @@ import Store from "./core/Store.js";
 import OrdersTable from "./core/OrdersTable.js";
 import Paginator from "./core/Paginator.js";
 import Navigator from "./core/Navigator.js";
+import FilterBar from "./core/FilterBar.js";
 
 const store = new Store();
 store.download();
@@ -13,6 +14,7 @@ const ot = new OrdersTable(
 	document.querySelector('[data-mount="ordersTable"]'),
 	store.orders.slice(0, 5)
 );
+
 const pagination = new Paginator(
 	document.querySelector('[data-mount="pagination"]'),
 	Math.ceil(store.orders.length / 5),
@@ -23,6 +25,11 @@ const navigator = new Navigator((navigatorInit) => {
 	const page = parseInt(navigatorInit.get('page', 1), 10);
 	pagination.page = page;
 	ot.orders = store.orders.slice((page - 1) * 5, page * 5);
+});
+
+const filterBar = new FilterBar({
+	orderTypes: 
+		"Сковородка Ручка Тетрадка Веревка Мыло Кресло Шина Ноутбук Нож".split(" ")
 });
 
 pagination.on('move', nextPage => {
