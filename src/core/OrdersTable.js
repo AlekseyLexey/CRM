@@ -62,7 +62,8 @@ class OrdersTable extends EventEmitter {
 
 			orderRowTemplateClone.querySelector(`[data-badge="${status}"]`).classList.remove('hidden');
 
-			orderRowTemplateClone.querySelector('[data-field="action"]').addEventListener('click', () => this.emit('edit', id));
+			orderRowTemplateClone.querySelector('[data-field="action"]')
+			.addEventListener('click', () => this.emit('edit', id));
 
 			tbody.append(orderRowTemplateClone);
 		}
