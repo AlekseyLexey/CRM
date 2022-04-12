@@ -3,7 +3,7 @@ import Observable from "./Observalbe.js";
 class Navigator extends Observable{
 	_data = {};
 
-	constructor(handler = () => {}) {
+	constructor(handler) {
 		super();
 
 		const params = new URLSearchParams(location.search);

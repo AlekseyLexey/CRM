@@ -20,6 +20,7 @@ class FilterBar extends Observable {
 		this._dateFromInput = document.querySelector('input[data-field="dateFrom"]');
 		this._dateToInput = document.querySelector('input[data-field="dateTo"]');
 
+		console.log(this);
 		this._nameInput.addEventListener('input', this.apply);
 		this._typeSelect.addEventListener('select', this.apply);
 		this._statusSelect.addEventListener('select', this.apply);
@@ -32,11 +33,15 @@ class FilterBar extends Observable {
 	}
 
 	apply = () => {
-		// console.log(this._nameInput.value);
 		this.dispatch({
 			fName: this._nameInput.value,
-
-		});
+			fOrderType: this._typeSelect.value,
+			fStatus: this._statusSelect.value,
+			fMinPrice: this._minPriceInput,
+			fMaxPrice: this._maxPriceInput,
+			fDateFrom: this._dateFromInput,
+			fDataTo: this._dateToInput
+		})
 	}
 }
 

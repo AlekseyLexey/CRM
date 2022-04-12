@@ -21,8 +21,11 @@ const pagination = new Paginator(
 	1
 );
 
-const navigator = new Navigator((navigatorInit) => {
+const navigator = new Navigator(navigatorInit => {
 	const page = parseInt(navigatorInit.get('page', 1), 10);
+
+	let orders = store.orders;
+
 	pagination.page = page;
 	ot.orders = store.orders.slice((page - 1) * 5, page * 5);
 });
@@ -39,3 +42,12 @@ pagination.on('move', nextPage => {
 	navigator.set('page', nextPage);
 });
 
+filterBar.subscribe(filterBar => {
+	for (const [key, value] of Object.entries(filterBar)) {
+		if (value) {
+			navigator.set(key, value);
+		} else {
+			navigator.remove(key);
+		}
+	}
+});
