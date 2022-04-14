@@ -25,7 +25,7 @@ class Paginator extends EventEmitter {
 	}
 
 	get page() {
-		return this._pages;
+		return this._page;
 	}
 
 	set page(page) {

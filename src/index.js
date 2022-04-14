@@ -21,18 +21,59 @@ const pagination = new Paginator(
 	1
 );
 
-const navigator = new Navigator(navigatorInit => {
-	const page = parseInt(navigatorInit.get('page', 1), 10);
-
-	let orders = store.orders;
-
-	pagination.page = page;
-	ot.orders = store.orders.slice((page - 1) * 5, page * 5);
-});
-
 const filterBar = new FilterBar({
 	orderTypes: 
 		"Сковородка Ручка Тетрадка Веревка Мыло Кресло Шина Ноутбук Нож".split(" ")
+});
+
+const navigator = new Navigator(navigatorInit => {
+	const page = parseInt(navigatorInit.get('page'), 10);
+
+	let orders = store.orders;
+
+	if (navigatorInit.has('fName')) {
+		const fName = navigatorInit.get('fName');
+		
+
+		orders = orders.filter(
+			oreder =>
+			oreder.user.name.toLowerCase().includes(fName.toLowerCase()) ||
+			oreder.user.surname.toLowerCase().includes(fName.toLowerCase())
+		);
+
+		filterBar._nameInput.value = fName;
+	}
+
+	if (navigatorInit.has('fOrderType')) {
+		const fOrderType = navigatorInit.get('fOrderType');
+		if (fOrderType !== 'Все') {
+			orders = orders.filter(oreder => oreder.orderType === fOrderType);
+			// console.log(orders);
+		}
+		filterBar._typeSelect.value = fOrderType;
+	}
+
+	// if (navigatorInit.has('fName')) {
+	// 	const fName = navigatorInit.get('fName');
+	// 	console.log(`${fName.toLowerCase()} `.length);
+
+	// 	orders = orders.filter(
+	// 		oreder =>
+	// 		oreder.user.name.toLowerCase().includes(fName.toLowerCase()) ||
+	// 		oreder.user.name.toLowerCase().includes(`${fName.toLowerCase()} `) ||
+	// 		oreder.user.surname.toLowerCase().includes(fName.toLowerCase())
+	// 	);
+
+	// 	filterBar._nameInput.value = fName;
+	// }
+
+	pagination.pages = Math.ceil(orders.length / 5);
+	pagination.page = Math.min(page, pagination.pages);
+	ot.orders = orders.slice(
+		(pagination.page - 1) * 5,
+		pagination.page * 5
+	);
+	console.log(ot.orders);
 });
 
 pagination.on('move', nextPage => {
@@ -42,8 +83,8 @@ pagination.on('move', nextPage => {
 	navigator.set('page', nextPage);
 });
 
-filterBar.subscribe(filterBar => {
-	for (const [key, value] of Object.entries(filterBar)) {
+filterBar.subscribe(filterBarHandler => {
+	for (const [key, value] of Object.entries(filterBarHandler)) {
 		if (value) {
 			navigator.set(key, value);
 		} else {

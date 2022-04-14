@@ -20,7 +20,6 @@ class FilterBar extends Observable {
 		this._dateFromInput = document.querySelector('input[data-field="dateFrom"]');
 		this._dateToInput = document.querySelector('input[data-field="dateTo"]');
 
-		console.log(this);
 		this._nameInput.addEventListener('input', this.apply);
 		this._typeSelect.addEventListener('select', this.apply);
 		this._statusSelect.addEventListener('select', this.apply);
@@ -29,7 +28,21 @@ class FilterBar extends Observable {
 		this._dateFromInput.addEventListener('input', this.apply);
 		this._dateToInput.addEventListener('input', this.apply);
 
-		
+		if (data.orderTypes) {
+			this._typeSelect.textContent = null;
+
+			const option = document.createElement("option");
+			option.value = "Все";
+			option.textContent = "Все";
+			this._typeSelect.append(option);
+
+			for (const type of data.orderTypes) {
+				const option = document.createElement("option");
+				option.value = type;
+				option.textContent = type;
+				this._typeSelect.append(option);
+			}
+		}
 	}
 
 	apply = () => {
@@ -37,10 +50,10 @@ class FilterBar extends Observable {
 			fName: this._nameInput.value,
 			fOrderType: this._typeSelect.value,
 			fStatus: this._statusSelect.value,
-			fMinPrice: this._minPriceInput,
-			fMaxPrice: this._maxPriceInput,
-			fDateFrom: this._dateFromInput,
-			fDataTo: this._dateToInput
+			fMinPrice: this._minPriceInput.value,
+			fMaxPrice: this._maxPriceInput.value,
+			fDateFrom: this._dateFromInput.value,
+			fDataTo: this._dateToInput.value
 		})
 	}
 }

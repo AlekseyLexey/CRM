@@ -20,7 +20,7 @@ class Navigator extends Observable{
 		return this._data.hasOwnProperty(key);
 	}
 
-	get(key, defaultValue) {
+	get(key, defaultValue = 1) {
 		if (this._data.hasOwnProperty(key)) {
 			return this._data[key];
 		}
@@ -32,7 +32,7 @@ class Navigator extends Observable{
 		this._data = {
 			...this._data,
 			[key]: value
-		}
+		};
 
 		const params = new URLSearchParams();
 
@@ -40,13 +40,13 @@ class Navigator extends Observable{
 			params.append(key, value);
 		}
 
-		history.pushState(null, null, `?${params.toString()}`)
+		history.pushState(null, null, `?${params.toString()}`);
 		this.dispatch(this);
 	}
 
 	remove(key) {
 		if (!this._data.hasOwnProperty(key)) {
-			return
+			return;
 		}
 
 		delete this._data[key];
@@ -57,7 +57,7 @@ class Navigator extends Observable{
 			params.append(key, value);
 		}
 
-		history.pushState(null, null, `?${params.toString()}`)
+		history.pushState(null, null, `?${params.toString()}`);
 		this.dispatch(this);
 	}
 }
