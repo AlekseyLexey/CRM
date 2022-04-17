@@ -19,31 +19,31 @@
 
 					<ul class="nav flex-column">
 						<li class="nav-item">
-							<a class="nav-link active" href="#">
+							<a class="nav-link active" href="#" data-action="filter" data-field="status" data-value="all">
 								<img src="./assets/data-collection.png" alt="" style="width: 30px">
 								Все заказы
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="#" data-action="filter" data-field="status" data-value="new">
 								<img src="./assets/new.png" alt="" style="width: 30px">
 								Новые
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="#" data-action="filter" data-field="status" data-value="process">
 								<img src="./assets/innovation.png" alt="" style="width: 30px">
 								На исполнение
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="#" data-action="filter" data-field="status" data-value="back">
 								<img src="./assets/back.png" alt="" style="width: 30px">
 								Возврат
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="#" data-action="filter" data-field="status" data-value="archived">
 								<img src="./assets/compressed.png" alt="" style="width: 30px">
 								Заархивированные
 							</a>
@@ -102,7 +102,7 @@
 					<div class="form-group col">
 						<label>Статус:</label>
 						<select class="form-control" data-field="orderStatus" >
-							<option selected value="">Все</option>
+							<option selected value="all">Все</option>
 							<option value="new">Новые</option>
 							<option value="process">На исполнение</option>
 							<option value="back">Возврат</option>

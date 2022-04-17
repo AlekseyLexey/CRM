@@ -8,8 +8,6 @@ const store = new Store();
 store.download();
 store.upload();
 
-console.log(store._orders);
-
 const ot = new OrdersTable(
 	document.querySelector('[data-mount="ordersTable"]'),
 	store.orders.slice(0, 5)
@@ -46,7 +44,7 @@ const navigator = new Navigator(navigatorInit => {
 	if (navigatorInit.has('fOrderType')) {
 		const fOrderType = navigatorInit.get('fOrderType');
 
-		if (fOrderType !== 'Все') {
+		if (fOrderType !== 'all') {
 			orders = orders.filter(oreder => oreder.orderType === fOrderType);
 		}
 
@@ -56,7 +54,7 @@ const navigator = new Navigator(navigatorInit => {
 	if (navigatorInit.has('fStatus')) {
 		const fStatus = navigatorInit.get('fStatus');
 
-		if (fStatus !== '') {
+		if (fStatus !== 'all') {
 			orders = orders.filter(oreder => oreder.status === fStatus);
 		}
 
@@ -111,3 +109,18 @@ filterBar.subscribe(filterBarHandler => {
 		}
 	}
 });
+
+const filerLinkElements = document.querySelectorAll('a.nav-link[data-action]');
+
+for (const element of filerLinkElements) {
+	element.addEventListener('click', e => {
+		e.preventDefault();
+		
+		let { action, field, value } = element.dataset;
+
+		if (action === 'filter') {
+			field = `f${field[0].toUpperCase()}${field.slice(1)}`;
+			navigator.set(field, value);
+		}
+	});
+}

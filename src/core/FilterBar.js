@@ -32,7 +32,7 @@ class FilterBar extends Observable {
 			this._typeSelect.textContent = null;
 
 			const option = document.createElement("option");
-			option.value = "Все";
+			option.value = "all";
 			option.textContent = "Все";
 			this._typeSelect.append(option);
 
