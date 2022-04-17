@@ -33,7 +33,6 @@ const navigator = new Navigator(navigatorInit => {
 
 	if (navigatorInit.has('fName')) {
 		const fName = navigatorInit.get('fName');
-		
 
 		orders = orders.filter(
 			oreder =>
@@ -41,31 +40,52 @@ const navigator = new Navigator(navigatorInit => {
 			oreder.user.surname.toLowerCase().includes(fName.toLowerCase())
 		);
 
-		filterBar._nameInput.value = fName;
+		// filterBar._nameInput.value = fName;
 	}
 
 	if (navigatorInit.has('fOrderType')) {
 		const fOrderType = navigatorInit.get('fOrderType');
+
 		if (fOrderType !== 'Все') {
 			orders = orders.filter(oreder => oreder.orderType === fOrderType);
-			// console.log(orders);
 		}
+
 		filterBar._typeSelect.value = fOrderType;
 	}
 
-	// if (navigatorInit.has('fName')) {
-	// 	const fName = navigatorInit.get('fName');
-	// 	console.log(`${fName.toLowerCase()} `.length);
+	if (navigatorInit.has('fStatus')) {
+		const fStatus = navigatorInit.get('fStatus');
 
-	// 	orders = orders.filter(
-	// 		oreder =>
-	// 		oreder.user.name.toLowerCase().includes(fName.toLowerCase()) ||
-	// 		oreder.user.name.toLowerCase().includes(`${fName.toLowerCase()} `) ||
-	// 		oreder.user.surname.toLowerCase().includes(fName.toLowerCase())
-	// 	);
+		if (fStatus !== '') {
+			orders = orders.filter(oreder => oreder.status === fStatus);
+		}
 
-	// 	filterBar._nameInput.value = fName;
-	// }
+		filterBar._statusSelect.value = fStatus;
+	}
+
+	if (navigatorInit.has('fMinPrice')) {
+		const fMinPrice = navigatorInit.get('fMinPrice');
+
+		orders = orders.filter(oreder => oreder.price >= fMinPrice);
+	}
+
+	if (navigatorInit.has('fMaxPrice')) {
+		const fMaxPrice = navigatorInit.get('fMaxPrice');
+
+		orders = orders.filter(oreder => oreder.price <= fMaxPrice);
+	}
+
+	if (navigatorInit.has('fDateFrom')) {
+		const fDateFrom = new Date(navigatorInit.get('fDateFrom'));
+
+		orders = orders.filter(order => fDateFrom <= new Date(order.createdAt));
+	}
+
+	if (navigatorInit.has('fDataTo')) {
+		const fDataTo = new Date(navigatorInit.get('fDataTo'));
+
+		orders = orders.filter(order => fDataTo >= new Date(order.createdAt));
+	}
 
 	pagination.pages = Math.ceil(orders.length / 5);
 	pagination.page = Math.min(page, pagination.pages);
@@ -73,7 +93,6 @@ const navigator = new Navigator(navigatorInit => {
 		(pagination.page - 1) * 5,
 		pagination.page * 5
 	);
-	console.log(ot.orders);
 });
 
 pagination.on('move', nextPage => {

@@ -21,8 +21,8 @@ class FilterBar extends Observable {
 		this._dateToInput = document.querySelector('input[data-field="dateTo"]');
 
 		this._nameInput.addEventListener('input', this.apply);
-		this._typeSelect.addEventListener('select', this.apply);
-		this._statusSelect.addEventListener('select', this.apply);
+		this._typeSelect.addEventListener('change', this.apply);
+		this._statusSelect.addEventListener('change', this.apply);
 		this._minPriceInput.addEventListener('input', this.apply);
 		this._maxPriceInput.addEventListener('input', this.apply);
 		this._dateFromInput.addEventListener('input', this.apply);
