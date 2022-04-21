@@ -12,8 +12,10 @@ class Navigator extends Observable{
 			this._data[key] = value;
 		}
 
-		this.subscribe(handler);
-		this.dispatch(this);
+		if (handler) {
+			this.subscribe(handler);
+			this.dispatch(this);
+		}
 	}
 
 	has(key) {
