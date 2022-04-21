@@ -1,23 +1,34 @@
 const APPLICATION_KEY = "__crm_app__";
+const APPLICATION_LAST_KYES = "__crm_last_keys__";
 
 class Store {
 	_orders = [];
+	_lastOrders = [];
 
 	get orders() {
 		return JSON.parse(JSON.stringify(this._orders));
 	}
 
+	get lastOrders() {
+		return JSON.parse(JSON.stringify(this._lastOrders));
+	}
+
 	upload() {
 		const orders = JSON.stringify(this._orders);
 		localStorage.setItem(APPLICATION_KEY, orders);
+		const lastOrders = JSON.stringify(this._lastOrders);
+		localStorage.setItem(APPLICATION_LAST_KYES, lastOrders);
 	}
 
 	download() {
 		this._orders.splice(0);
+		this._lastOrders.splice(0);
 		const jsonLocal = localStorage.getItem(APPLICATION_KEY);
+		const jsonLocalLast = localStorage.getItem(APPLICATION_LAST_KYES);
 
 		if (jsonLocal) {
 			this._orders.push(...JSON.parse(jsonLocal));
+			this._lastOrders.push(...JSON.parse(jsonLocalLast));
 		} else {
 			this.reinit();
 		}
@@ -77,6 +88,13 @@ class Store {
 			{"id":49,"user":{"name":"Олег","surname":"Саван"},"orderType":"Кресло","price":4804,"status":"back","createdAt":"2022-04-08T10:52:51.411Z"},
 			{"id":50,"user":{"name":"Василий","surname":"Мельник"},"orderType":"Нож","price":3879,"status":"process","createdAt":"2022-04-08T13:14:31.976Z"}
 		]);
+		this._lastOrders.splice(0);
+		this._lastOrders.push(...[
+			{"id":1,"user":{"name":"Константин","surname":"Соколов"},"orderType":"Ноутбук","price":2340,"status":"archived","createdAt":"2022-04-01T23:00:19.334Z"},
+			{"id":2,"user":{"name":"Сергей","surname":"Вихта"},"orderType":"Кресло","price":1854,"status":"archived","createdAt":"2022-04-02T00:01:57.384Z"},
+			{"id":3,"user":{"name":"Алексей","surname":"Соловье"},"orderType":"Шина","price":4113,"status":"back","createdAt":"2022-04-02T00:11:47.683Z"},
+			{"id":4,"user":{"name":"Василий","surname":"Мельник"},"orderType":"Ручка","price":3834,"status":"new","createdAt":"2022-04-02T01:16:25.845Z"},
+		])
 	}
 }
 

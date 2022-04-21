@@ -35,7 +35,6 @@ class NewOrder {
 
 			location = `/index.html`;
 		});
-		console.log(this._orders);
 	}
 
 	getRandom(max, min) {

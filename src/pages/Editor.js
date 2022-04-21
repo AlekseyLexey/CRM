@@ -36,6 +36,21 @@ class Editor {
 
 		const btn = document.querySelector('button.btn.btn-success');
 
+		const lastOrders = this._orders.lastOrders;
+
+		document.querySelectorAll('a[data-link="lastOrder"]').forEach((elem, i) => {
+			elem.innerHTML = `
+			<img src="./assets/arrow.png" alt="" style="width: 30px">
+			${lastOrders[i].user.name} ${lastOrders[i].user.surname}
+			`;
+
+			elem.addEventListener('click', (e) => {
+				e.preventDefault();
+
+				location = `/editor.html?orderId=${lastOrders[i].id}`
+			})
+		})
+
 		btn.addEventListener('click', () => {
 			const orderId = parseInt(this._navigatior.get('orderId'), 10);
 			this._orders._orders[orderId - 1] = this._order;
