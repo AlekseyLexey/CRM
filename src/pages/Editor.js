@@ -42,6 +42,8 @@ class Editor {
 
 			this._orders.upload();
 
+			alert('Changes were done!');
+
 			location = `/index.html`;
 		});
 	}
