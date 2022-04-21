@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>СРМ</title>
+	<title>CRM</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
@@ -19,31 +19,31 @@
 
 					<ul class="nav flex-column">
 						<li class="nav-item">
-							<a class="nav-link active" href="#">
+							<a class="nav-link active" href="#" data-action="filter" data-field="status" data-value="all">
 								<img src="./assets/data-collection.png" alt="" style="width: 30px">
 								Все заказы
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="#" data-action="filter" data-field="status" data-value="new">
 								<img src="./assets/new.png" alt="" style="width: 30px">
 								Новые
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="#" data-action="filter" data-field="status" data-value="process">
 								<img src="./assets/innovation.png" alt="" style="width: 30px">
 								На исполнение
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="#" data-action="filter" data-field="status" data-value="back">
 								<img src="./assets/back.png" alt="" style="width: 30px">
 								Возврат
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="#" data-action="filter" data-field="status" data-value="archived">
 								<img src="./assets/compressed.png" alt="" style="width: 30px">
 								Заархивированные
 							</a>
@@ -90,125 +90,83 @@
 				<div class="form-row p-2">
 					<div class="form-group col">
 						<label>ФИО:</label>
-						<input class="form-control" type="text" placeholder="ФИО">
+						<input class="form-control" data-field="name" type="text" placeholder="ФИО">
 					</div>
 					<div class="form-group col">
 						<label>Заказ:</label>
-						<select class="form-control">
+						<select class="form-control" data-field="orderType">
 							<option selected></option>
 							<option></option>
 						</select>
 					</div>
 					<div class="form-group col">
 						<label>Статус:</label>
-						<select class="form-control">
-							<option selected>Все</option>
-							<option>Новые</option>
-							<option>На исполнение</option>
-							<option>Возврат</option>
-							<option>Заархивированные</option>
+						<select class="form-control" data-field="orderStatus" >
+							<option selected value="all">Все</option>
+							<option value="new">Новые</option>
+							<option value="process">На исполнение</option>
+							<option value="back">Возврат</option>
+							<option value="archived">Заархивированные</option>
 						</select>
 					</div>
 					<div class="form-group col">
 						<label>Сумма:</label>
-						<input class="form-control" type="number" placeholder="От">
-						<input class="form-control" type="number" placeholder="До">
+						<input class="form-control" data-field="minPrice"  type="number" placeholder="От">
+						<input class="form-control" data-field="maxPrice"  type="number" placeholder="До">
 					</div>
 					<div class="form-group col">
 						<label>Дата:</label>
-						<input class="form-control" type="date">
-						<input class="form-control" type="date">
+						<input class="form-control" data-field="dateFrom"  type="date">
+						<input class="form-control" data-field="dateTo"  type="date">
 					</div>
 				</div>
 
-				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>id</th>
-								<th>ИФО</th>
-								<th>Заказ</th>
-								<th>Сумма</th>
-								<th>Статус</th>
-								<th>Действия</th>
-								<th>Дата / Время</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Максим Анатольевич</td>
-								<td>Фотоальбом</td>
-								<td>1400,00</td>
-								<td><div class="badge badge-primary">new</div></td>
-								<td>
-									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
-								</td>
-								<td>12.02.2019 14:30</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Серьгей Дмитриевич</td>
-								<td>Бумага для принтера</td>
-								<td>510,00</td>
-								<td><div class="badge badge-warning">process</div></td>
-								<td>
-									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
-								</td>
-								<td>11.02.2019 11:30</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Ольга Арбузова</td>
-								<td>Краски для принетра</td>
-								<td>2100,00</td>
-								<td><div class="badge badge-warning">process</div></td>
-								<td>
-									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
-								</td>
-								<td>05.03.2019 04:12</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>Максимус Валькиш</td>
-								<td>Полимерная ванна</td>
-								<td>785,00</td>
-								<td><div class="badge badge-danger">back</div></td>
-								<td>
-									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
-								</td>
-								<td>07.03.2019 17:15</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>Ольга Арбузова</td>
-								<td>Фотоальбом</td>
-								<td>1400,00</td>
-								<td><div class="badge badge-dark">archived</div></td>
-								<td>
-									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
-								</td>
-								<td>01.03.2019 13:22</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-					  <li class="page-item disabled">
-						<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Назад</a>
-					  </li>
-					  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-					  <li class="page-item"><a class="page-link" href="#">2</a></li>
-					  <li class="page-item"><a class="page-link" href="#">3</a></li>
-					  <li class="page-item">
-						<a class="page-link" href="#">Вперед</a>
-					  </li>
-					</ul>
-				  </nav>
+				<div data-mount="ordersTable"></div>
+				<div data-mount="pagination"></div>
 			</main>
 		</div>
 	</div>
+
+	<template data-template="ordersTable">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>ИФО</th>
+						<th>Заказ</th>
+						<th>Сумма</th>
+						<th>Статус</th>
+						<th>Действия</th>
+						<th>Дата / Время</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</template>
+
+	<template data-row="orderRow">
+		<tr>
+			<td data-field="id">1</td>
+			<td data-field="nameSurname">Максим Анатольевич</td>
+			<td data-field="type">Фотоальбом</td>
+			<td data-field="price">1400,00</td>
+			<td data-field="badge">
+				<div class="badge badge-primary hidden" data-badge="new">new</div>
+				<div class="badge badge-warning hidden" data-badge="process">process</div>
+				<div class="badge badge-danger hidden" data-badge="back">back</div>
+				<div class="badge badge-dark hidden" data-badge="archived">archived</div>
+			</td>
+			<td data-field="action">
+				<button class="btn btn-outline-primary btn-sm">Редактировать</button>
+			</td>
+			<td data-field="date">12.02.2019 14:30</td>
+		</tr>
+	</template>
+
+
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 	</script>
@@ -218,6 +176,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 	</script>
+	<!-- <script src="src/generate.js"></script> -->
+	<script src="src/index.js" type="module"></script>
 </body>
 
 </html>
