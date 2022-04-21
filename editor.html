@@ -55,57 +55,45 @@
                     <h6
                         class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         Последние просматриваемые</h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                                Максим Анатольевич
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                                Серьгей Дмитриевич
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                                Ольга Арбузова
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <img src="./assets/arrow.png" alt="" style="width: 30px">
-                                Максимус Валькиш
-                            </a>
-                        </li>
-                    </ul>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-link="lastOrder"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-link="lastOrder"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-link="lastOrder"></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-link="lastOrder"></a>
+                            </li>
+                        </ul>
                 </div>
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 d-flex flex-column p-2">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Серьгей Лазонка</h2>
+                        <h2 data-user="fullname">Серьгей Лазонка</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">ID:</label>
                             <div class="col-sm-11">
-                                <input type="text" class="form-control-plaintext" readonly value="2">
+                                <input type="text" class="form-control-plaintext" readonly value="2" data-user="id">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">ФИО:</label>
                             <div class="col-sm-11">
-                                <input type="text" class="form-control" value="Серьгей Лазонка">
+                                <input type="text" class="form-control" value="Серьгей Лазонка" data-user="fullname">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">Заказ:</label>
                             <div class="col-sm-11">
-                                <select class="form-control">
+                                <select class="form-control" data-user="type">
                                     <option selected>Бумага для принтера</option>
                                     <option>Краски для принтера</option>
                                     <option>Картриджи для принтера</option>
@@ -117,17 +105,17 @@
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">Дата:</label>
                             <div class="col-sm-11">
-                                <input type="date" class="form-control" value="2020-03-03">
+                                <input type="date" class="form-control" value="2020-03-03" data-user="date">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-1 col-form-label">Статус:</label>
                             <div class="col-sm-11">
-                                <select class="form-control">
-                                    <option selected>На исполнение</option>
-                                    <option>Возврат</option>
-                                    <option>Заархивированно</option>
-                                    <option>Новый</option>
+                                <select class="form-control" data-user="status">
+                                    <option selected value="process">На исполнение</option>
+                                    <option value="back">Возврат</option>
+                                    <option value="archived">Заархивированно</option>
+                                    <option value="new">Новый</option>
                                 </select>
                             </div>
                         </div>
@@ -140,6 +128,8 @@
             </main>
         </div>
     </div>
+
+    <script src="src/editor.js" type="module"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
